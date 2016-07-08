@@ -29,7 +29,7 @@ class CrosswordImage(object):
         self._draw = ImageDraw.Draw(self._image)
         self._num_font = None
         self._text_font = None
-        print FILE_PATH+"/FreeSans.ttf"
+        print FONT_PATH
         self._num_font = ImageFont.truetype(FONT_PATH, 
                                             size=ANSWER_OFFSET)
         self._text_font = ImageFont.truetype(FONT_PATH, 
