@@ -6,7 +6,7 @@ def read(fname):
 
 setup(
     name = 'puzcw',
-    version = '0.0.1',
+    version = '0.0.2',
     author = 'Brian Wu',
     author_email = 'brian.george.wu@gmail.com',
     description = 'Python API for converting puz files to python objects',
