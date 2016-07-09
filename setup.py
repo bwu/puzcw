@@ -5,11 +5,13 @@ def read(fname):
     return open(os.path.join(os.path.dirname(__file__), fname)).read()
 
 setup(
-    name = 'puzcw',
-    version = '0.0.3',
-    author = 'Brian Wu',
-    author_email = 'brian.george.wu@gmail.com',
-    description = 'Python API for converting puz files to python objects',
-    keywords = ['crossword', 'puz'],
-    packages = ['puzcw']
+    name='puzcw',
+    version='0.0.7',
+    author='Brian Wu',
+    author_email='brian.george.wu@gmail.com',
+    description='Python API for converting puz files to python objects',
+    keywords=['crossword', 'puz'],
+    packages=['puzcw'],
+    include_package_data = True,
+    package_data={'static':['*']}
 )
