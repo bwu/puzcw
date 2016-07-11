@@ -13,7 +13,6 @@ def format_clues(clues):
 if __name__ == "__main__":
 
     # Instantiate
-    puzzle = Puzzle()
     with open('example.puz', 'r') as f:
         puzzle = Puzzle.from_str(f.read())
 
@@ -24,7 +23,7 @@ if __name__ == "__main__":
     print puzzle.get_clue(1, 'a').clue
 
     # Submit first clue
-    puzzle.submit(1, 'a','PAIN')
+    puzzle.submit(1, 'd','WORD')
 
     # Save puzzle
     print puzzle.save_game()

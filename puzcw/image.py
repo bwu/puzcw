@@ -29,7 +29,6 @@ class CrosswordImage(object):
         self._draw = ImageDraw.Draw(self._image)
         self._num_font = None
         self._text_font = None
-        print FONT_PATH
         self._num_font = ImageFont.truetype(FONT_PATH, 
                                             size=ANSWER_OFFSET)
         self._text_font = ImageFont.truetype(FONT_PATH, 
@@ -68,11 +67,9 @@ class CrosswordImage(object):
                     # Fill in text
                     loc = (x+ANSWER_OFFSET, y+ANSWER_OFFSET+Y_TEXT_OFFSET)
                     if box.has_submission:
-                        print 'submit: %s' % box.latest_submission
                         self._draw.text(loc, box.latest_submission, fill=128, 
                                         font=self._text_font)
                     elif box.has_ghost:
-                        print 'ghost: %s' % box.latest_ghost
                         self._draw.text(loc, box.latest_ghost, fill=LIGHT_GREY,
                                         font=self._text_font)
 
