@@ -33,99 +33,6 @@ class Puzzle(object):
         self.board = []
         self.clues = Clues()
 
-    def init_game(self, n=None, m=None):
-        """ Retrieve and parse game. """
-        self.__init__(n, m)
-        game_str = self._download_game()
-        self._process_game_str(game_str)
-        self.save_game()
-
-    def save_game(self):
-        """ Save crossword as image, return path. """
-        image = CrosswordImage(self.width, self.height, self.board)
-        image.construct_image()
-        return image.save()
-
-    def get_clue(self, num, clue_type):
-        """ Retrieve clue by key. """
-        num = int(num)
-        clue_type = clue_type.lower()
-        try:
-            return self.clues.get_clue(num, clue_type)
-        except KeyError:
-            return "Clue %s:%s doesn't exist!" % (num, clue_type)
-
-    @property
-    def across_clues(self):
-        """ Retrieve all across clues. """
-        return self.clues.clues_by_type(ACROSS_ID)
-
-    @property
-    def down_clues(self):
-        """ Retrieve all down clues. """
-        return self.clues.clues_by_type(DOWN_ID)
-
-    @property
-    def all_clues(self):
-        return self.across_clues + self.down_clues
-
-    def _write(self, num, clue_type, word, guess_type):
-        clue = self.get_clue(num, clue_type)
-        x, y = clue.start_position
-        for letter in word:
-            box = self.board[x][y]
-
-            # Raise WriteException for blank box
-            if box.is_blank: raise WriteException
-
-            box.write(guess_type, clue_type, letter.upper())
-
-            # Increment x or y
-            if clue_type == ACROSS_ID:
-                y += 1
-            else:
-                x += 1
-
-    def submit(self, num, clue_type, word):
-        self._write(num, clue_type, word, 'submission')
-
-    def ghost(self, num, clue_type, word):
-        self._write(num, clue_type, word, 'ghost')
-
-    def clear(self, num, clue_type):
-        """ Clear answers from boxes by direction. """
-        clue = self.get_clue(num, clue_type)
-        x, y = clue.start_position
-        while True:
-            try:
-                box = self.board[x][y]
-                if box.is_blank: raise WriteException
-                box.clear(clue_type)
-                if clue_type == ACROSS_ID:
-                    y += 1
-                else:
-                    x += 1
-
-            # Break at a blank or index error
-            except (WriteException, IndexError) as e:
-                break
-
-    # def _download_game(self):
-    #     """ Download and format game. """
-    #     day = datetime.now()
-    #     attempts = 0
-    #     while attempts < 10:
-    #         try:
-    #             day_str = day.strftime('%y.%m.%d.puz')
-    #             # day_str = '16.07.03.puz'
-    #             url = MOTHERLOAD + day_str
-    #             res = urllib2.urlopen(url)
-    #             ucontent = unicode(res.read(), "ISO-8859-1")
-    #             return ucontent.encode('utf-8')
-    #         except urllib2.HTTPError:
-    #             attempts += 1
-    #             day = day - timedelta(days=1)
-
     @classmethod
     def from_url(cls, url):
         res = urllib2.urlopen(url)
@@ -207,3 +114,72 @@ class Puzzle(object):
 
             self.board.append(new_row)
 
+    def save_game(self):
+        """ Save crossword as image, return path. """
+        image = CrosswordImage(self.width, self.height, self.board)
+        image.construct_image()
+        return image.save()
+
+    def get_clue(self, num, clue_type):
+        """ Retrieve clue by key. """
+        num = int(num)
+        clue_type = clue_type.lower()
+        try:
+            return self.clues.get_clue(num, clue_type)
+        except KeyError:
+            return "Clue %s:%s doesn't exist!" % (num, clue_type)
+
+    @property
+    def across_clues(self):
+        """ Retrieve all across clues. """
+        return self.clues.clues_by_type(ACROSS_ID)
+
+    @property
+    def down_clues(self):
+        """ Retrieve all down clues. """
+        return self.clues.clues_by_type(DOWN_ID)
+
+    @property
+    def all_clues(self):
+        return self.across_clues + self.down_clues
+
+    def _write(self, num, clue_type, word, guess_type):
+        clue = self.get_clue(num, clue_type)
+        x, y = clue.start_position
+        for letter in word:
+            box = self.board[x][y]
+
+            # Raise WriteException for blank box
+            if box.is_blank: raise WriteException
+
+            box.write(guess_type, clue_type, letter.upper())
+
+            # Increment x or y
+            if clue_type == ACROSS_ID:
+                y += 1
+            else:
+                x += 1
+
+    def submit(self, num, clue_type, word):
+        self._write(num, clue_type, word, 'submission')
+
+    def ghost(self, num, clue_type, word):
+        self._write(num, clue_type, word, 'ghost')
+
+    def clear(self, num, clue_type):
+        """ Clear answers from boxes by direction. """
+        clue = self.get_clue(num, clue_type)
+        x, y = clue.start_position
+        while True:
+            try:
+                box = self.board[x][y]
+                if box.is_blank: raise WriteException
+                box.clear(clue_type)
+                if clue_type == ACROSS_ID:
+                    y += 1
+                else:
+                    x += 1
+
+            # Break at a blank or index error
+            except (WriteException, IndexError) as e:
+                break
