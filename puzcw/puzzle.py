@@ -17,7 +17,6 @@ from exception import BoardDimensionException, \
 from box import Box
 from clues import Clue, Clues, ACROSS_ID, DOWN_ID
 
-
 NULL = '\x00'
 OPEN_BOX = '-'
 BLANK = '.'
