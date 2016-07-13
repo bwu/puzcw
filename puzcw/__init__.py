@@ -1,2 +1,2 @@
-from .puzzle import Puzzle
+from .crossword import Crossword
 from .exception import *

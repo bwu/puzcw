@@ -19,8 +19,11 @@ class Clue(object):
         self.num = num
         self.clue_type = clue_type
 
+        self.submitted = False
+
     def __repr__(self):
-        return '%s:%s:%s' % (self.clue, self.num, self.clue_type)
+        return '%s:%s:%s:%s' % \
+            (self.clue, self.num, self.clue_type, self.submitted)
 
 
 class Clues(object):

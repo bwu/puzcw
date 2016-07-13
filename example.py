@@ -3,7 +3,7 @@
 An example game!
 """
 
-from puzcw import Puzzle
+from puzcw import Crossword
 
 def format_clues(clues):
     clues = map(lambda x: '%s. %s' % (x.num, x.clue), clues)
@@ -14,10 +14,10 @@ if __name__ == "__main__":
 
     # Instantiate
     with open('example.puz', 'r') as f:
-        puzzle = Puzzle.from_str(f.read())
+        puzzle = Crossword.from_str(f.read())
 
     # Print puzzle height and width
-    print "Puzzle is %sx%s" % (puzzle.width, puzzle.height)
+    print "Crossword is %sx%s" % (puzzle.width, puzzle.height)
 
     # Get first clue
     print puzzle.get_clue(1, 'a').clue

@@ -6,13 +6,13 @@ def read(fname):
 
 setup(
     name='puzcw',
-    version='0.0.9',
+    version='0.0.10',
     author='Brian Wu',
     author_email='brian.george.wu@gmail.com',
     description='Python API for converting puz files to python objects',
     keywords=['crossword', 'puz'],
     packages=['puzcw'],
-    install_requires=['pillow==3.3.0'],
+    install_requires=['puzpy', 'pillow==3.3.0'],
     include_package_data = True,
     package_data={'static':['*']}
 )
