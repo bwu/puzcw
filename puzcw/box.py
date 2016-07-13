@@ -11,9 +11,10 @@ AnswerTuple = namedtuple('AnswerTuple', 'val ts')
 
 class Box(object):
 
-    def __init__(self, answer, is_blank, number):
+    def __init__(self, answer, is_blank, number, is_circle):
         self.answer = answer
         self.is_blank = is_blank
+        self.is_circle = is_circle
         self.number = number
 
         # Filled in later

@@ -72,6 +72,11 @@ class CrosswordImage(object):
                     elif box.has_ghost:
                         self._draw.text(loc, box.latest_ghost, fill=LIGHT_GREY,
                                         font=self._text_font)
+                    # Fill in extra
+                    if box.is_circle:
+                        corner1 = (x, y)
+                        corner2 = (x+BOX_SIZE, y+BOX_SIZE)
+                        self._draw.ellipse((corner1, corner2), outline=128)
 
                 # Move to the next boxes
                 x = (x + BOX_SIZE) % self._width
