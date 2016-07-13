@@ -6,9 +6,10 @@ def read(fname):
 
 setup(
     name='puzcw',
-    version='0.0.10',
+    version='0.0.11',
     author='Brian Wu',
     author_email='brian.george.wu@gmail.com',
+    url='https://github.com/bwu/puzcw',
     description='Python API for converting puz files to python objects',
     keywords=['crossword', 'puz'],
     packages=['puzcw'],
