@@ -70,7 +70,7 @@ class Crossword(object):
         fill = p.fill
         solution = p.solution
         clues = p.clues
-        circ = p.extensions['GEXT']
+        circ = p.extensions['GEXT'] if (p.extensions and 'GEXT' in p.extensions) else None 
 
         idx = 0
         clue_idx = 0
@@ -81,7 +81,7 @@ class Crossword(object):
 
                 # Get box info
                 is_blank = fill[idx] == BLANK
-                is_circle = circ[idx] == CIRCLE
+                is_circle = circ and circ[idx] == CIRCLE
                 answer = None if is_blank else solution[idx]
                 is_across = not is_blank and \
                             (col==0 or new_row[col-1].is_blank)
