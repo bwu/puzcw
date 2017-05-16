@@ -6,7 +6,7 @@ def read(fname):
 
 setup(
     name='puzcw',
-    version='0.0.11',
+    version='0.0.12',
     author='Brian Wu',
     author_email='brian.george.wu@gmail.com',
     url='https://github.com/bwu/puzcw',
