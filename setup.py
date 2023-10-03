@@ -13,7 +13,7 @@ setup(
     description='Python API for converting puz files to python objects',
     keywords=['crossword', 'puz'],
     packages=['puzcw'],
-    install_requires=['puzpy', 'pillow==3.3.0'],
+    install_requires=['puzpy', 'pillow==10.0.1'],
     include_package_data = True,
     package_data={'static':['*']}
 )
